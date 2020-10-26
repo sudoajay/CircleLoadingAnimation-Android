@@ -38,7 +38,5 @@ class MainActivity : Activity() {
         animatedCircleLoadingView!!.setPercent(percent)
     }
 
-    fun resetLoading() {
-        animatedCircleLoadingView!!.resetLoading()
-    }
+
 }
