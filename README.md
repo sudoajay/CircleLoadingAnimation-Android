@@ -83,14 +83,12 @@ Add repository to your build.gradle
 
 ```groovy
 repositories {
-  maven {
-    url "http://dl.bintray.com/jlmd/maven"
-  }
+  maven { url 'https://jitpack.io' }
 }
 ```
 Add dependency to your build.gradle
 ```groovy
-compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
+  implementation 'com.github.SudoAjay:CircleLoadingAnimation-Android:v1.1'
 ```
 
 Developed by
