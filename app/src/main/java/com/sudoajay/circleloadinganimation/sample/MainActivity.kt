@@ -1,20 +1,26 @@
 package com.sudoajay.circleloadinganimation.sample
 
-import android.app.Activity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.sudoajay.circleloadinganimation.AnimatedCircleLoadingView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
     private var animatedCircleLoadingView: AnimatedCircleLoadingView? = null
+    private var TAG = "MainActivityTAG"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         animatedCircleLoadingView = circle_loading_view
         startLoading()
         startPercentMockThread()
+        animatedCircleLoadingView!!.progressFinished.observe(this, {
+
+//            Happy Coding :)
+        })
 
     }
 

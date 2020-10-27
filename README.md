@@ -69,6 +69,13 @@ Reset loading:
 ```java
 animatedCircleLoadingView.resetLoading();
 ```
+After Progress Finish:
+
+```kotlin
+animatedCircleLoadingView!!.progressFinished.observe(this, {
+//            Happy Coding :)
+        })
+```
 
 Gradle dependency
 ----

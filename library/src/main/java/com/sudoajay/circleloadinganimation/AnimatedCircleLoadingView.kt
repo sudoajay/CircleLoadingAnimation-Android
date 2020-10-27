@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.lifecycle.MutableLiveData
 import com.sudoajay.circleloadinganimation.animator.ViewAnimator
 import com.sudoajay.circleloadinganimation.component.*
 import com.sudoajay.circleloadinganimation.component.finish.FinishedFailureView
@@ -33,6 +34,8 @@ class AnimatedCircleLoadingView : FrameLayout {
     private var checkMarkTintColor = 0
     private var failureMarkTintColor = 0
     private var textColor = 0
+    var progressFinished: MutableLiveData<Boolean> = MutableLiveData()
+
 
     constructor(context: Context) : super(context)
 
@@ -142,7 +145,7 @@ class AnimatedCircleLoadingView : FrameLayout {
         viewAnimator!!.setComponentViewAnimations(
             initialCenterCircleView, rightCircleView, sideArcsView,
             topCircleBorderView, mainCircleView, finishedOkView, finishedFailureView,
-            percentIndicatorView
+            percentIndicatorView, progressFinished
         )
     }
 

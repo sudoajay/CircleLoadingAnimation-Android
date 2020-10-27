@@ -1,7 +1,8 @@
 package com.sudoajay.circleloadinganimation.animator
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.sudoajay.circleloadinganimation.AnimatedCircleLoadingView
-import com.github.jlmd.animatedcircleloadingview.component.*
 import com.sudoajay.circleloadinganimation.component.*
 import com.sudoajay.circleloadinganimation.component.ComponentViewAnimation.StateListener
 import com.sudoajay.circleloadinganimation.component.finish.FinishedFailureView
@@ -22,12 +23,15 @@ class ViewAnimator : StateListener {
     private var finishedState: AnimationState? = null
     private var resetAnimator = false
     private var animationListener: AnimatedCircleLoadingView.AnimationListener? = null
+    var progressFinished: MutableLiveData<Boolean> = MutableLiveData()
+
+
     fun setComponentViewAnimations(
         initialCenterCircleView: InitialCenterCircleView?,
         rightCircleView: RightCircleView?, sideArcsView: SideArcsView?,
         topCircleBorderView: TopCircleBorderView?, mainCircleView: MainCircleView?,
         finishedOkCircleView: FinishedOkView?, finishedFailureView: FinishedFailureView?,
-        percentIndicatorView: PercentIndicatorView?
+        percentIndicatorView: PercentIndicatorView?, progressFinished: MutableLiveData<Boolean>
     ) {
         this.initialCenterCircleView = initialCenterCircleView
         this.rightCircleView = rightCircleView
@@ -37,6 +41,7 @@ class ViewAnimator : StateListener {
         finishedOkView = finishedOkCircleView
         this.finishedFailureView = finishedFailureView
         this.percentIndicatorView = percentIndicatorView
+        this.progressFinished = progressFinished
         initListeners()
     }
 
@@ -148,12 +153,14 @@ class ViewAnimator : StateListener {
         finishedState = state
         initialCenterCircleView!!.showView()
         initialCenterCircleView!!.startTranslateCenterAnimation()
+
     }
 
     private fun onMainCircleTranslatedCenter() {
         if (finishedState === AnimationState.FINISHED_OK) {
             finishedOkView!!.showView()
             finishedOkView!!.startScaleAnimation()
+
         } else {
             finishedFailureView!!.showView()
             finishedFailureView!!.startScaleAnimation()
@@ -162,9 +169,12 @@ class ViewAnimator : StateListener {
     }
 
     private fun onAnimationEnd() {
+        progressFinished.value = true
         if (animationListener != null) {
             val success = finishedState === AnimationState.FINISHED_OK
             animationListener!!.onAnimationEnd(success)
+
+
         }
     }
 }
