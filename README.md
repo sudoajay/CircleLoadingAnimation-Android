@@ -71,6 +71,12 @@ After Progress Finish:
 
 ```kotlin
 animatedCircleLoadingView!!.progressFinished.observe(this, {
+        if(it){
+//          The prorgess finsihed sucessfull        
+        }else{
+     //          The prorgess Failed  
+        }
+
 //            Happy Coding :)
         })
 ```
@@ -86,7 +92,7 @@ repositories {
 ```
 Add dependency to your build.gradle
 ```groovy
-  implementation 'com.github.SudoAjay:CircleLoadingAnimation-Android:v1.1'
+  implementation 'com.github.SudoAjay:CircleLoadingAnimation-Android:v1.2'
 ```
 
 Developed by
