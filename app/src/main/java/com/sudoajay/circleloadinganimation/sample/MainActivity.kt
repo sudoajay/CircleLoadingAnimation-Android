@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
         startLoading()
         startPercentMockThread()
         animatedCircleLoadingView!!.progressFinished.observe(this, {
-
+            Log.e(TAG , "$it --- ")
 //            Happy Coding :)
         })
-
+        animatedCircleLoadingView!!.stopFailure()
     }
 
     private fun startLoading() {

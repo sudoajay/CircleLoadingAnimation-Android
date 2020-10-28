@@ -169,7 +169,7 @@ class ViewAnimator : StateListener {
     }
 
     private fun onAnimationEnd() {
-        progressFinished.value = true
+        progressFinished.value = finishedState == AnimationState.FINISHED_OK
         if (animationListener != null) {
             val success = finishedState === AnimationState.FINISHED_OK
             animationListener!!.onAnimationEnd(success)
